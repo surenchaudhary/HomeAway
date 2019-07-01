@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.expedia.homeaway"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "environment"
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
+        dev {
+            buildConfigField 'String', 'BASE_URL', '"https://api.foursquare.com/v2/venues/"'
+            buildConfigField 'String', 'CLIENT_SECRET', '"TVS3ZMLXT1305RVPXZGJUXBFVY5BAEK10BUJX1GANT2MVEUZ"'
+            buildConfigField 'String', 'CLIENT_ID', '"CTCBMBLX1N1Q443QE03E5RDMRAIDHAPOL21GGMJ5ASYELC1B"'
+            dimension "environment"
+        }
+
+        prod {
+            buildConfigField 'String', 'BASE_URL', '"https://api.foursquare.com/v2/venues/"'
+            buildConfigField 'String', 'CLIENT_SECRET', '"TVS3ZMLXT1305RVPXZGJUXBFVY5BAEK10BUJX1GANT2MVEUZ"'
+            buildConfigField 'String', 'CLIENT_ID', '"CTCBMBLX1N1Q443QE03E5RDMRAIDHAPOL21GGMJ5ASYELC1B"'
+            dimension "environment"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.1'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.cardview:cardview:1.0.0-beta01'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.android.gms:play-services:12.0.0'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+
+    //butterknofe
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    //OkHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2+"
+    implementation 'io.reactivex.rxjava2:rxandroid:2+'
+
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+}
